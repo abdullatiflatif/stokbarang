@@ -30,6 +30,40 @@
     </thead>
     <tbody>
     </tbody>
+    
+    <a href="tambahstok.html" class="tombol">tambah</a>
+    
+    
+    <script type="module">
+    import { ambildaftarstok, hapusstok } from './main.js';
+
+    $(document).ready(async function() {
+      let elemenDaftar = $("#daftar-barang > thead");
+      let daftarstok = await ambildaftarstok();
+      let nomor = 1;
+      daftarstok.forEach((data) => {
+        elemenDaftar.append(
+          '<tr>' +
+          '<th>' + nomor + '</th>' +
+          '<td>' + data.nama + '</td>' +
+          '<td>' + data.jumlah + '</td>' +
+          '<td> <a href="#" class="btn btn-danger tombol-hapus" data="' +
+          data.id +
+          '">Hapus</a>' + '</td>' +
+          '</tr>'
+
+        );
+        nomor = nomor + 1;
+      });
+      $('.tombol-hapus').click(async function() {
+        await hapusstok($(this).attr('data'));
+        location.reload();
+      })
+
+    });
+    
+    
+</script>
 
 
 </body>
