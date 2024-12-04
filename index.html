@@ -47,6 +47,9 @@
           '<th>' + nomor + '</th>' +
           '<td>' + data.nama + '</td>' +
           '<td>' + data.jumlah + '</td>' +
+          '<td> <button class="btn btn-warning ubah" data="' +
+          data.id +
+          '">Ubah</button>' +
           '<td> <a href="#" class="btn btn-danger tombol-hapus" data="' +
           data.id +
           '">Hapus</a>' + '</td>' +
@@ -59,6 +62,9 @@
         await hapusstok($(this).attr('data'));
         location.reload();
       })
+      $('.ubah').click(async function() {
+      window.location.replace('ubahstok.html?docId=' + $(this).attr('data'));
+    })
 
     });
     
