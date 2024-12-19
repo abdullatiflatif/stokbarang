@@ -27,7 +27,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export async function ambildaftarstok() {
-  const refDokumen = collection(db, "stokbarang");
+  const refDokumen = collection(db, "nabawi");
   const kueri = query(refDokumen, orderBy("nama"));
   const cuplikanKueri = await getDocs(kueri);
 
@@ -36,7 +36,7 @@ export async function ambildaftarstok() {
     hasil.push({
       id: dok.id,
       nama: dok.data().nama,
-      jumlah: dok.data().jumlah,
+      harga: dok.data().harga,
     });
   });
 
@@ -45,30 +45,30 @@ export async function ambildaftarstok() {
 }
 
 export async function hapusstok(docId) {
-  await deleteDoc(doc(db, "stokbarang", docId));
+  await deleteDoc(doc(db, "nabawi", docId));
 }
 
-export async function tambahstok( nama, jumlah ) {
+export async function tambahstok( nama, harga ) {
   try {
-    const dokRef = await addDoc(collection(db, 'stokbarang'), {
+    const dokRef = await addDoc(collection(db, 'nabawi'), {
      nama:nama,
-     jumlah:jumlah,
+     harga:harga,
     });
-    console.log('berhasil menembah stok ' + dokRef.id);
+    console.log('berhasil menembah nabawi ' + dokRef.id);
   } catch (e) {
-    console.log('gagal menambah stok ' + e);
+    console.log('gagal menambah nabawi ' + e);
   }
 }
 
-export async function ubahstok(docId, nama, jumlah) {
-  await updateDoc(doc(db, "stokbarang", docId), {
+export async function ubahstok(docId, nama, harga) {
+  await updateDoc(doc(db, "nabawi", docId), {
     nama: nama,
-    jumlah: jumlah,
+    harga: harga,
   });
 }
 
 export async function ambilstok(docId) {
-  const docRef = await doc(db, "stokbarang", docId);
+  const docRef = await doc(db, "nabawi", docId);
   const docSnap = await getDoc(docRef);
 
   return await docSnap.data();

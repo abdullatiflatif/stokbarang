@@ -21,8 +21,8 @@
       <input type="text" class="form-control" id="input-nama">
     </div>
     <div class="mb-3">
-      <label class="form-label">jumlah</label>
-      <input type="text" class="form-control" id="input-jumlah">
+      <label class="form-label">harga</label>
+      <input type="text" class="form-control" id="input-harga">
     </div>
     <button type="submit" class="btn btn-primary" id="tombol-ubah">Ubah</button>
   </form>
@@ -33,19 +33,19 @@
 
     let tombolubah = document.getElementById('tombol-ubah');
     let elemennama = document.getElementById('input-nama');
-    let elemenjumlah = document.getElementById('input-jumlah');
+    let elemenharga = document.getElementById('input-harga');
     const queryString = window.location.search;
     const parameterURL = new URLSearchParams(queryString);
     const docId = parameterURL.get('docId');
-    const Absensi = await ambilstok(docId);
+    const nabawi = await ambilnabawi(docId);
 
     elemennama.value = Absensi.nama;
-    elemenjumlah.value = Absensi.jumlah;
+    elemenharga.value = Absensi.harga;
     
 
     tombolubah.addEventListener('click', async function(el) {
       el.preventDefault();
-      await ubahstok(docId, elemennama.value, elemenjumlah.value);
+      await ubahstok(docId, elemennama.value, elemenharga.value);
       window.location.href = 'index.html';
     });
   </script>

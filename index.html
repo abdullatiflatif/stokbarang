@@ -17,36 +17,37 @@
 </head>
 
 <body>
-<h1>stokbarang</h1>
+<h1>daftar menu</h1>
 
-  <table class="table" id="daftar-barang">
+  <table class="table" id="daftar-nabawi">
     <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">nama</th>
-        <th scope="col">jumlah</th>
+        <th scope="col">harga</th>
+        <th scope="col">ubah</th>
 
       </tr>
     </thead>
     <tbody>
     </tbody>
     
-    <a href="tambahstok.html" class="tombol">tambah</a>
+    <a href="tambahnabawi.html" class="tombol">tambah</a>
     
     
     <script type="module">
-    import { ambildaftarstok, hapusstok } from './main.js';
+    import { ambildaftarstok, hapusnabawi } from './main.js';
 
     $(document).ready(async function() {
-      let elemenDaftar = $("#daftar-barang > thead");
-      let daftarstok = await ambildaftarstok();
+      let elemenDaftar = $("#daftar-menu > thead");
+      let daftarnabawi = await ambildaftarstok();
       let nomor = 1;
       daftarstok.forEach((data) => {
         elemenDaftar.append(
           '<tr>' +
           '<th>' + nomor + '</th>' +
           '<td>' + data.nama + '</td>' +
-          '<td>' + data.jumlah + '</td>' +
+          '<td>' + data.harga + '</td>' +
           '<td> <button class="btn btn-warning ubah" data="' +
           data.id +
           '">Ubah</button>' +
@@ -63,7 +64,7 @@
         location.reload();
       })
       $('.ubah').click(async function() {
-      window.location.replace('ubahstok.html?docId=' + $(this).attr('data'));
+      window.location.replace('ubahnabawi.html?docId=' + $(this).attr('data'));
     })
 
     });
